@@ -50,8 +50,8 @@ class InputParser:
                 cache_line = cache_line.split(' ')
                 cache_id = cache_line[0]
                 cache_latency = cache_line[1]
-                ep.addCache(cache_id, cache_latency)
-
+                ep.addCache(cache_id, int(cache_latency))
+            ep.sortCaches()
             self.endPointList.append(ep)
 
 
