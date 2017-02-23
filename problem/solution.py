@@ -9,7 +9,6 @@ def process_file(filename):
     manager.caches = parser.getCaches()
     manager.endpoints = parser.getEndPoints()
     manager.requests = parser.getRequests()
-
     manager.FillCaches()
 
     outputstring = manager.OutputString()
@@ -19,6 +18,6 @@ def process_file(filename):
 if __name__ == "__main__":
     files = ["me_at_the_zoo", "kittens", "trending_today", "videos_worth_spreading"]
 
-    for file in files[0:1]:
+    for file in files:
         process_file(file)
 
