@@ -18,6 +18,8 @@ def process_file(filename):
 if __name__ == "__main__":
     files = ["me_at_the_zoo", "kittens", "trending_today", "videos_worth_spreading"]
 
+    #process_file("me_at_the_zoo")
     for file in files:
+        print(file)
         process_file(file)
 

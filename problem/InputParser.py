@@ -63,6 +63,7 @@ class InputParser:
             request_line = request_line.split(' ')
             id_vid, id_ep, num= int(request_line[0]), int(request_line[1]), int(request_line[2])
             req = Request(self.videoList[id_vid],self.endPointList[id_ep],num)
+            self.endPointList[id_ep].addRequest(req)
             self.requestList.append(req)
 
 
