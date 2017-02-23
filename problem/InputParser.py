@@ -31,18 +31,18 @@ class InputParser:
         videos = videoline[:-1].split(' ')
 
         for size in videos:
-            vid = Video(size)
+            vid = Video(int(size))
             self.videoList.append(vid)
 
         for i in range(num_caches):
-            cache = Cache(capacity)
+            cache = Cache(int(capacity))
             self.cacheList.append(cache)
 
 
         for endpoint in range(num_endpoints):
             ep_line = inputfile.readline()[:-1]
             ep_line = ep_line.split(' ')
-            datacenter_latency = ep_line[0]
+            datacenter_latency = int(ep_line[0])
             cache_count = int(ep_line[1])
             ep = EndPoint(datacenter_latency)
             for cache in range(cache_count):
