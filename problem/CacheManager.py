@@ -23,7 +23,7 @@ class CacheManager:
                     break
 
     def fillAlgo3(self):
-        self.requests.sort(key=lambda req:req.number*(req.endpoint.maxdiff()),reverse=True)
+        self.requests.sort(key=lambda req:req.number*(req.endpoint.maxdiff())/req.video.size,reverse=True)
         for request in self.requests:
             endpoint = request.endpoint
             video = request.video
