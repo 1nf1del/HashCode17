@@ -7,11 +7,12 @@ class InputParser:
     def __init__(self):
         self.videoList = list()
         self.cacheList = list()
+        self.requestList = list()
+        self.endPointList = list()
 
     def parse(self,filename):
         inputfile = open(filename, 'r')
         firstline = inputfile.readline()
-        print(firstline)
         param = firstline[:-1].split(' ')
         num_videos, num_endpoints, num_descriptions, num_caches, capacity = int(param[0]), int(param[1]), int(param[2]), int(param[3]), int(param[4])
         videoline = inputfile.readline()
@@ -40,8 +41,14 @@ class InputParser:
                 cache_latency = cache_line[1]
                 ep.addCache(cache_id, cache_latency)
 
+            self.endPointList.append(ep)
+
 
         for i in range(num_descriptions):
-
+            request_line = inputfile.readline()[:-1]
+            request_line = request_line.split(' ')
+            id_vid, id_ep, num= int(request_line[0]), int(request_line[1]), int(request_line[2])
+            req = Request(id_vid,id_ep,num)
+            self.requestList.append(req)
 
 
