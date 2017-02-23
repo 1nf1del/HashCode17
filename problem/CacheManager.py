@@ -6,6 +6,13 @@ class CacheManager:
         self.requests = list()
 
     def FillCaches(self):
-        self.requests.sort(key=lambda req:req.number , reverse=True)
-        for 
+        self.requests.sort(key=lambda req:req.number, reverse=True)
+        for request in self.requests:
+            endpoint = request.endpoint
+            video = request.video
+            for (cache,latency) in endpoint.caches:
+                if cache.put(video):
+                    break
+
+
 
