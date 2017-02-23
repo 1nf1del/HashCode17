@@ -13,3 +13,8 @@ class EndPoint:
 
     def sortCaches(self):
         self.caches.sort(key=operator.itemgetter(1))
+
+    def score(self):
+        diff = 0
+        for cache, lat in self.caches:
+            diff += abs(self.datacenter_latency - lat)

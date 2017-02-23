@@ -1,9 +1,10 @@
 class CacheManager:
-    def __init__(self):
+    def __init__(self, printing=False):
         self.videos = list()
         self.caches = list()
         self.endpoints = list()
         self.requests = list()
+        self.print = printing
 
     def FillCaches(self):
         self.setup()
@@ -16,10 +17,12 @@ class CacheManager:
         for request in self.requests:
             endpoint = request.endpoint
             video = request.video
-            print("Requests:{0!s} video:{0!s} EP:{0!s}".format(request.number, video.id, endpoint.id))
+            if self.print:
+                print("Requests:{0!s} video:{0!s} EP:{0!s}".format(request.number, video.id, endpoint.id))
             for (cache, latency) in endpoint.caches:
                 if cache.put(video):
-                    print("Put in cache:{0!s} latency:{0!s}ms".format(cache.id, latency))
+                    if self.print:
+                        print("Put in cache:{0!s} latency:{0!s}ms".format(cache.id, latency))
                     break
 
     def fillAlgo3(self):
@@ -32,6 +35,11 @@ class CacheManager:
                 if cache.put(video):
                     print("Put in cache:{0!s} latency:{0!s}ms".format(cache.id, latency))
                     break
+
+
+    def fillAlgo3(self):
+
+
 
     def OutputString(self):
         outputstr =""
