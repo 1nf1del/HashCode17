@@ -6,7 +6,7 @@ class Cache:
         self.free = self.size
 
     def put(self,video):
-        if self.free >= video.size:
+        if self.free >= video.size and video not in self.videos:
             self.videos.append(video)
             self.free -= video.size
             return True

@@ -9,6 +9,4 @@ if __name__ == "__main__":
     manager.caches = parser.getCaches()
     manager.endpoints = parser.getEndPoints()
     manager.requests = parser.getRequests()
-
-
     manager.FillCaches()

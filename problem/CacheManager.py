@@ -6,7 +6,13 @@ class CacheManager:
         self.requests = list()
 
     def FillCaches(self):
+        self.setup()
+        self.fillAlgo1()
+
+    def setup(self):
         self.requests.sort(key=lambda req: req.number, reverse=True)
+
+    def fillAlgo1(self):
         for request in self.requests:
             endpoint = request.endpoint
             video = request.video
@@ -15,7 +21,6 @@ class CacheManager:
                 if cache.put(video):
                     print("Put in cache:{0!s} latency:{0!s}ms".format(cache.id, latency))
                     break
-
 
 
     def OutputString(self):
