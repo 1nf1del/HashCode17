@@ -38,3 +38,10 @@ class EndPoint:
         else:
             maxdiff = 0
         return maxdiff
+
+    def diff(self,cache):
+        latency = self.datacenter_latency
+        for i in range(len(self.caches)):
+            if self.caches[i][0] == cache:
+                latency = self.caches[i][1]
+        return self.datacenter_latency - latency

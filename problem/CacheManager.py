@@ -7,7 +7,7 @@ class CacheManager:
         self.printing = printing
 
     def FillCaches(self):
-        self.fillAlgo5()
+        self.fillAlgo6()
 
     def fillAlgo1(self):
         self.requests.sort(key=lambda req: req.number, reverse=True)
@@ -58,6 +58,30 @@ class CacheManager:
                     for (cache, latency) in ep.caches:
                         if cache.put(video):
                             break
+
+    def fillAlgo6(self):
+        for req in self.requests:
+            for cache in req.endpoint.caches:
+                cache[0].addvideoscore(req.video,req.endpoint,req.number)
+        self.endpoints.sort(key=lambda ep: ep.score(), reverse=True)
+        self.requests.sort(key=lambda req: req.number, reverse=True)
+        for ep in self.endpoints:
+            for request in ep.requests:
+                video = request.video
+                already_present = False
+                ep.caches.sort(key=lambda x: x[0].getscore(video))
+                for (cache, latency) in ep.caches:
+                    if video in cache.videos:
+                        already_present = True
+                if not already_present:
+                    for (cache, latency) in ep.caches:
+                        if cache.put(video):
+                            break
+
+
+
+
+
 
 
     def OutputString(self):
