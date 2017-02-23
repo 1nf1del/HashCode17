@@ -2,13 +2,13 @@ from Cache import Cache
 import operator
 
 class EndPoint:
-    def __init__(self, datacenter_latency):
+    def __init__(self, id, datacenter_latency):
         self.caches = list()
+        self.id = id
         self.datacenter_latency = datacenter_latency
 
 
-    def addCache(self,id,latency):
-        cache = Cache(id)
+    def addCache(self,cache,latency):
         self.caches.append((cache, latency))
 
     def sortCaches(self):

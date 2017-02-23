@@ -1,6 +1,7 @@
 class Cache:
-    def __init__(self,size):
-        self.size = int(size)
+    def __init__(self,id, size):
+        self.id = id
+        self.size = size
         self.videos = list()
         self.free = self.size
 
