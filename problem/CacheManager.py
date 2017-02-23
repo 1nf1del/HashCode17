@@ -12,6 +12,7 @@ class CacheManager:
             video = request.video
             for (cache,latency) in endpoint.caches:
                 if cache.put(video):
+                    print("")
                     break
 
 
