@@ -30,12 +30,14 @@ class InputParser:
         videoline = inputfile.readline()
         videos = videoline[:-1].split(' ')
 
+        video_count = 0
         for size in videos:
-            vid = Video(size)
+            vid = Video(id=video_count, size=size)
+            video_count += 1
             self.videoList.append(vid)
 
         for i in range(num_caches):
-            cache = Cache(capacity)
+            cache = Cache(i, capacity)
             self.cacheList.append(cache)
 
 
