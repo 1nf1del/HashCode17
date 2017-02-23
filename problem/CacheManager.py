@@ -4,40 +4,33 @@ class CacheManager:
         self.caches = list()
         self.endpoints = list()
         self.requests = list()
-        self.print = printing
+        self.printing = printing
 
     def FillCaches(self):
-        self.setup()
-        self.fillAlgo1()
+        self.fillAlgo3()
 
-    def setup(self):
-        self.requests.sort(key=lambda req: req.number, reverse=True)
 
     def fillAlgo1(self):
+        self.requests.sort(key=lambda req: req.number, reverse=True)
         for request in self.requests:
             endpoint = request.endpoint
             video = request.video
-            if self.print:
+            if self.printing:
                 print("Requests:{0!s} video:{0!s} EP:{0!s}".format(request.number, video.id, endpoint.id))
             for (cache, latency) in endpoint.caches:
                 if cache.put(video):
-                    if self.print:
+                    if self.printing:
                         print("Put in cache:{0!s} latency:{0!s}ms".format(cache.id, latency))
                     break
 
     def fillAlgo3(self):
-        self.requests.sort(key=lambda req:req.number*(req.endpoint.datacenter_latency-req.endpoint.caches[0][1])/request.video.size)
+        self.requests.sort(key=lambda req:req.number*(req.endpoint.maxdiff()),reverse=True)
         for request in self.requests:
             endpoint = request.endpoint
             video = request.video
-            print("Requests:{0!s} video:{0!s} EP:{0!s}".format(request.number, video.id, endpoint.id))
             for (cache, latency) in endpoint.caches:
-                if cache.put(video):
-                    print("Put in cache:{0!s} latency:{0!s}ms".format(cache.id, latency))
-                    break
-
-
-    def fillAlgo3(self):
+                cache.put(video)
+                break
 
 
 

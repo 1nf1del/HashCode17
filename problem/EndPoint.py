@@ -18,3 +18,10 @@ class EndPoint:
         diff = 0
         for cache, lat in self.caches:
             diff += abs(self.datacenter_latency - lat)
+
+    def maxdiff(self):
+        if self.caches:
+            maxdiff = self.datacenter_latency - self.caches[0][1]
+        else:
+            maxdiff = 0
+        return maxdiff
